@@ -40,7 +40,7 @@ public class CaffeineListActivity extends AppCompatActivity
         LocationListener {
 
     public static final int COARSE_LOCATION_REQUEST_CODE = 100;
-    public static final int FINE_LOCATION_REQUEST_CODE = 100;
+    public static final int FINE_LOCATION_REQUEST_CODE = 200;
 
     private DBHelper db;
     private List<CaffeineLocation> mAllCaffeineLocationsList;
