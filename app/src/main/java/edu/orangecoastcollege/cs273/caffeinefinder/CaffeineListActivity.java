@@ -193,14 +193,35 @@ public class CaffeineListActivity extends AppCompatActivity
         handleNewLocation(location);
     }
 
-    //TODO: In overriden onConnected method, get the last location, then request location updates and handle the new location
+    //DONE: In overriden onConnected method, get the last location, then request location updates and handle the new location
 
-    //TODO: Override onRequestedPermissionsResult.  If fine/coarse location is granted, updated the last location
-    //TODO: Else, initialize mLastLocation to a new location with latitude 0.0 and longitude 0.0
-    //TODO: In either case, handle the new location.
+    //DONE: Override onRequestedPermissionsResult.  If fine/coarse location is granted, updated the last location
+    //DONE: Else, initialize mLastLocation to a new location with latitude 0.0 and longitude 0.0
+    //DONE: In either case, handle the new location.
 
 
     //TODO: Create a new method: public void findClosestCaffeine, which will be invoked when a user clicks on the button
     //TODO: Loop through all the caffeine locations and find the one with the minimum distance.
     //TODO: Then, fire off an Intent to the details page and put both the SelectedLocation and MyLocation
+    public void findClosestCaffeine(View view) {
+        double minDistance = Double.MAX_VALUE;
+        CaffeineLocation closestLocation = null;
+        double distance;
+        Location tempLocation = new Location("");
+        for (CaffeineLocation caffeineLocation : mAllCaffeineLocationsList) {
+            // convert Caffeine Location into a Google Location
+            tempLocation.setLatitude(caffeineLocation.getLatitude());
+            tempLocation.setLongitude(caffeineLocation.getLongitude());
+            distance = tempLocation.distanceTo(mLastLocation);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestLocation = caffeineLocation;
+            }
+        }
+        // Make new Intent to details activiy
+        Intent detailsIntent = new Intent(this, CaffeineDetailsActivity.class);
+        detailsIntent.putExtra("SelectedLocation", closestLocation);
+        detailsIntent.putExtra("MyLocation", mLastLocation);
+        startActivity(detailsIntent);
+    }
 }
