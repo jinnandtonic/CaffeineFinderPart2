@@ -159,6 +159,7 @@ public class CaffeineListActivity extends AppCompatActivity
             return;
         }
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         handleNewLocation(mLastLocation);
     }
 
@@ -173,8 +174,10 @@ public class CaffeineListActivity extends AppCompatActivity
             mLastLocation.setLatitude(0.0);
             mLastLocation.setLongitude(0.0);
         }
-        else
+        else {
             mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+        }
         handleNewLocation(mLastLocation);
     }
 
