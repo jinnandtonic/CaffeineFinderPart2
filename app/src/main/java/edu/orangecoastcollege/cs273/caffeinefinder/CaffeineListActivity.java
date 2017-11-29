@@ -158,8 +158,8 @@ public class CaffeineListActivity extends AppCompatActivity
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, FINE_LOCATION_REQUEST_CODE);
             return;
         }
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         handleNewLocation(mLastLocation);
     }
 
@@ -175,8 +175,8 @@ public class CaffeineListActivity extends AppCompatActivity
             mLastLocation.setLongitude(0.0);
         }
         else {
-            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         }
         handleNewLocation(mLastLocation);
     }
